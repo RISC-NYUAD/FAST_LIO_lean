@@ -1,0 +1,52 @@
+/**:
+    ros__parameters:
+        common:
+            lid_topic:  "velodyne_points"
+            imu_topic:  "camera/imu"
+            time_sync_en: false         # ONLY turn on when external time synchronization is really not possible
+            time_offset_lidar_to_imu: 0.0 # Time offset between lidar and IMU calibrated by other algorithms, e.g. LI-Init (can be found in README).
+                                          # This param will take effect no matter what time_sync_en is. So if the time offset is not known exactly, please set as 0.0
+            base_frame_id: "camera_imu_optical_frame"
+            lio_frame_id: "odom_fast_lio"
+            publish_tf: true
+            invert_tf: true
+
+        preprocess:
+            lidar_type: 1                # 1- VLP16, 2- RS16
+            scan_line: 16
+            scan_rate: 10                # only need to be set for velodyne, unit: Hz,
+            timestamp_unit: 0            # the unit of time/t field in the PointCloud2 rostopic: 0-second, 1-milisecond, 2-microsecond, 3-nanosecond.
+            blind: 2.0
+
+        mapping:
+            acc_cov: 0.01
+            gyr_cov: 0.01
+            b_acc_cov: 0.001
+            b_gyr_cov: 0.001
+            fov_degree:    180.0
+            det_range:     100.0
+            extrinsic_est_en:  false      # true: enable the online estimation of IMU-LiDAR extrinsic,
+            extrinsic_T: [ 0.097, 0.065, -0.085]
+            extrinsic_R: [ 0.0052689, -0.9999270, -0.0108759,
+                           0.0489658,  0.0111210, -0.9987385,
+                           0.9987866,  0.0047297,  0.0490208 ]
+
+        publish:
+            path_en:  true
+            scan_publish_en:  false       # false: close all the point cloud output
+            dense_publish_en: true       # false: low down the points number in a global-frame point clouds scan.
+            scan_bodyframe_pub_en: false  # true: output the point cloud scans in IMU-body-frame
+            map_en: true
+
+        pcd_save:
+            pcd_save_en: false
+            interval: -1                 # how many LiDAR frames saved in each pcd file;
+                                         # -1 : all frames will be saved in ONE pcd file, may lead to memory crash when having too much frames.
+
+        point_filter_num: 1
+        cube_side_length: 10.0
+        filter_size_corner: 0.5
+        filter_size_surf: 0.5
+        filter_size_map: 0.1
+        feature_size_map: 0.5
+        feature_extract_enable: false
