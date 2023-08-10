@@ -1,0 +1,4 @@
+geometry_msgs/Point query
+float64 radius
+---
+geometry_msgs/Point[] neighbors

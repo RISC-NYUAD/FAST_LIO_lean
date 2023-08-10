@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+  <arg name="namespace" default="tricopter"/>
+
+  <group ns="$(arg namespace)">
+    <node pkg="fast_lio" type="fastlio_mapping" name="fast_lio_node" output="screen" clear_params="true">
+      <param name="common/lid_topic" type="string" value="velodyne_points"/>
+      <param name="common/imu_topic" type="string" value="imu"/>
+      <param name="common/time_sync_en" type="bool" value="false"/>
+      <param name="common/time_offset_lidar_to_imu" type="double" value="0.0"/>
+      <param name="preprocess/lidar_type" type="int" value="1"/> <!-- 1: VLP16 -->
+      <param name="preprocess/scan_line" type="int" value="16"/>
+      <param name="preprocess/scan_rate" type="int" value="10"/>
+      <param name="preprocess/timestamp_unit" type="int" value="2"/>
+      <param name="preprocess/blind" type="double" value="1.0"/>
+      <param name="mapping/acc_cov" type="double" value="0.0001"/>
+      <param name="mapping/gyr_cov" type="double" value="0.0001"/>
+      <param name="mapping/b_acc_cov" type="double" value="0.001"/>
+      <param name="mapping/b_gyr_cov" type="double" value="0.001"/>
+      <param name="mapping/fov_degree" type="int" value="180"/>
+      <param name="mapping/det_range" type="double" value="100.0"/>
+      <param name="mapping/extrinsic_est_en" type="bool" value="false"/>
+      <rosparam param="mapping/extrinsic_T">[0.0, 0.0, 0.156]</rosparam>
+      <rosparam param="mapping/extrinsic_R">[1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0]</rosparam>
+      <param name="publish/path_en" type="bool" value="true"/>
+      <param name="publish/scan_publish_en" type="bool" value="true"/>
+      <param name="publish/dense_publish_en" type="bool" value="true"/>
+      <param name="publish/scan_bodyframe_publish_en" type="bool" value="false"/>
+      <param name="pcd_save/pcd_save_en" type="bool" value="false"/>
+      <param name="pcd_save/interval" type="int" value="-1"/>
+      <param name="point_filter_num" type="int" value="2"/>
+      <param name="max_iteration" type="int" value="3"/>
+      <param name="cube_side_length" type="int" value="100"/>
+      <param name="lio_frame_id" type="string" value="$(arg namespace)/fast_lio"/>
+      <param name="base_frame_id" type="string" value="$(arg namespace)/base_link"/>
+      <param name="publish_tf" type="bool" value="true"/>
+      <param name="invert_tf" type="bool" value="true"/>
+      <param name="filter_size_corner" type="double" value="0.2"/>
+      <param name="filter_size_surf" type="double" value="0.2"/>
+      <param name="filter_size_map" type="double" value="0.2"/>
+      <param name="feature_extract_enable" type="bool" value="false"/>
+      <!-- <param name="init_pose_topic" type="string" value="$(arg namespace)/altitude_sensor"/> -->
+    </node>
+
+  </group>
+
+</launch>
