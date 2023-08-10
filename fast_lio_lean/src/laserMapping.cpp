@@ -32,7 +32,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-#include <fast_lio/neighbor_points.h>
+#include <fast_lio_msg_srv/neighbor_points.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/Vector3.h>
 #include <ikd-Tree/ikd_Tree.h>
@@ -730,8 +730,8 @@ void h_share_model(state_ikfom& s, esekfom::dyn_share_datastruct<double>& ekfom_
   solve_time += omp_get_wtime() - solve_start_;
 }
 
-bool QueryNeighboringPoints(fast_lio::neighbor_points::Request& request,
-                            fast_lio::neighbor_points::Response& response) {
+bool QueryNeighboringPoints(fast_lio_msg_srv::neighbor_points::Request& request,
+                            fast_lio_msg_srv::neighbor_points::Response& response) {
   ros::WallTime start = ros::WallTime::now(), end;
 
   PointType query;

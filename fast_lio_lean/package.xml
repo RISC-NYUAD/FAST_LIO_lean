@@ -17,6 +17,7 @@
   <author email="zhangji@cmu.edu">Ji Zhang</author>
 
   <buildtool_depend>catkin</buildtool_depend>
+  <depend>fast_lio_msg_srv</depend>
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
   <depend>roscpp</depend>
@@ -24,7 +25,6 @@
   <depend>sensor_msgs</depend>
   <depend>tf</depend>
   <depend>pcl_ros</depend>
-  <depend>message_generation</depend>
   <depend>message_runtime</depend>
 
 </package>
