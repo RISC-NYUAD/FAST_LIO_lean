@@ -2,7 +2,7 @@
 #define COMMON_LIB_H
 
 #include <eigen_conversions/eigen_msg.h>
-#include <fast_lio_msg_srv/Pose6D.h>
+#include <fast_lio/Pose6D.h>
 #include <nav_msgs/Odometry.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
@@ -34,7 +34,7 @@ using namespace Eigen;
   vector<decltype(mat)::Scalar>(mat.data(), mat.data() + mat.rows() * mat.cols())
 #define DEBUG_FILE_DIR(name) (string(string(ROOT_DIR) + "Log/" + name))
 
-typedef fast_lio_msg_srv::Pose6D Pose6D;
+typedef fast_lio::Pose6D Pose6D;
 typedef pcl::PointXYZINormal PointType;
 typedef pcl::PointCloud<PointType> PointCloudXYZI;
 typedef vector<PointType, Eigen::aligned_allocator<PointType>> PointVector;

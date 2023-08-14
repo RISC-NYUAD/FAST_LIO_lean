@@ -32,7 +32,7 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-#include <fast_lio_msg_srv/neighbor_points.h>
+// #include <fast_lio/neighbor_points.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <geometry_msgs/Vector3.h>
 #include <ikd-Tree/ikd_Tree.h>
@@ -730,34 +730,34 @@ void h_share_model(state_ikfom& s, esekfom::dyn_share_datastruct<double>& ekfom_
   solve_time += omp_get_wtime() - solve_start_;
 }
 
-bool QueryNeighboringPoints(fast_lio_msg_srv::neighbor_points::Request& request,
-                            fast_lio_msg_srv::neighbor_points::Response& response) {
-  ros::WallTime start = ros::WallTime::now(), end;
+// bool QueryNeighboringPoints(fast_lio::neighbor_points::Request& request,
+//                             fast_lio::neighbor_points::Response& response) {
+//   ros::WallTime start = ros::WallTime::now(), end;
 
-  PointType query;
-  query.x = request.query.x;
-  query.y = request.query.y;
-  query.z = request.query.z;
+//   PointType query;
+//   query.x = request.query.x;
+//   query.y = request.query.y;
+//   query.z = request.query.z;
 
-  PointVector neighbors;
-  ikdtree.Radius_Search(query, request.radius, neighbors);
+//   PointVector neighbors;
+//   ikdtree.Radius_Search(query, request.radius, neighbors);
 
-  for (const auto& neighbor : neighbors) {
-    geometry_msgs::Point pt;
-    pt.x = neighbor.x;
-    pt.y = neighbor.y;
-    pt.z = neighbor.z;
-    response.neighbors.push_back(pt);
-  }
+//   for (const auto& neighbor : neighbors) {
+//     geometry_msgs::Point pt;
+//     pt.x = neighbor.x;
+//     pt.y = neighbor.y;
+//     pt.z = neighbor.z;
+//     response.neighbors.push_back(pt);
+//   }
 
-  end = ros::WallTime::now();
-  double execution_time = (end - start).toNSec() * 1e-6;
-  ROS_INFO_STREAM("Found " << neighbors.size() << " neighbors for point (" << query.x
-                           << ", " << query.y << ", " << query.z << ") at radius "
-                           << request.radius << " m in " << execution_time << " ms");
+//   end = ros::WallTime::now();
+//   double execution_time = (end - start).toNSec() * 1e-6;
+//   ROS_INFO_STREAM("Found " << neighbors.size() << " neighbors for point (" << query.x
+//                            << ", " << query.y << ", " << query.z << ") at radius "
+//                            << request.radius << " m in " << execution_time << " ms");
 
-  return true;
-}
+//   return true;
+// }
 
 int main(int argc, char** argv) {
   ros::init(argc, argv, "laserMapping");
@@ -904,8 +904,8 @@ int main(int argc, char** argv) {
   ros::Publisher pubPath = nh.advertise<nav_msgs::Path>("fast_lio_path", 100000);
 
   // Service initialization
-  ros::ServiceServer service = nh.advertiseService(
-      ros::this_node::getName() + "neighbor_points", QueryNeighboringPoints);
+  // ros::ServiceServer service = nh.advertiseService(
+  //     ros::this_node::getName() + "neighbor_points", QueryNeighboringPoints);
 
   //------------------------------------------------------------------------------------------------------
   signal(SIGINT, SigHandle);
