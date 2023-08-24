@@ -12,7 +12,7 @@
             invert_tf: true
 
         preprocess:
-            lidar_type: 2                # 1- VLP16, 2- RS16
+            lidar_type: 1                # 1- VLP16, 2- RS16
             scan_line: 16
             scan_rate: 10                # only need to be set for velodyne, unit: Hz,
             timestamp_unit: 0            # the unit of time/t field in the PointCloud2 rostopic: 0-second, 1-milisecond, 2-microsecond, 3-nanosecond.
